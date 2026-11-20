@@ -1,0 +1,69 @@
+The Pursued — Temporary Startup Implementation Plan
+
+1. Purpose
+
+1. This temporary document tracks implementation from app launch to the main menu's "انطلاق" button.
+2. It prevents forgotten requirements, conflicting files, and unnecessary scope expansion.
+3. It is an implementation checklist, not a replacement for the game's design documents.
+4. This document may be updated when the current scope is completed and the next scope is approved.
+
+2. Mandatory Project Rules
+
+5. Before every file change, reread this document and inspect the live GitHub repository on "main".
+6. Review all six existing design documents and the relevant code/configuration files before making decisions.
+7. Preserve "README.md", "README 2", "README 3", "README4", "README 5", and "README 6" unchanged.
+8. Follow the existing Godot 4 project structure and avoid duplicate files or conflicting implementations.
+9. Change or create one file at a time, provide its complete contents, and wait for user confirmation.
+10. Never claim a build or runtime test succeeded unless its result has been verified.
+11. Do not expand into full gameplay, world maps, enemy systems, or unrelated features during this scope.
+
+3. Required Startup Flow
+
+12. Launch the app into a full-screen splash screen displaying the game logo.
+13. The final logo image will be supplied by the user later; do not assume it already exists.
+14. On first launch, present a choice between lightweight resources and high-quality resources.
+15. Install or obtain the essential resources required to proceed.
+16. Obtain the resource pack matching the user's selected quality level.
+17. Save the selected setup so the choice is not repeated on every launch.
+18. On later launches, show a progress indicator while startup checks and required preparation run.
+19. Skip first-launch selection when a valid saved choice already exists.
+20. Detect missing or invalid required resources and provide a recovery path.
+21. Do not claim real downloadable resource packs exist until their files and hosting are verified.
+22. After successful preparation, open the main menu.
+23. Show a 3D player character in the main menu with a suitable animation or motion.
+24. Provide the "انطلاق" button and placeholders for general settings and player settings.
+25. Stop this scope at the main menu; the "انطلاق" destination must not imply completed gameplay.
+
+4. Initial File Checklist
+
+26. "project.godot" — modify startup configuration and main-scene entry only as needed.
+27. "scenes/main.tscn" — inspect and adapt the existing scene without losing reusable content.
+28. "scripts/player_controller.gd" — inspect dependencies before any necessary compatibility changes.
+29. "scenes/splash_screen.tscn" — create the splash-screen scene.
+30. "scripts/splash_screen.gd" — implement splash behavior and transition.
+31. "scenes/resource_setup.tscn" — create the first-launch resource-choice interface.
+32. "scripts/resource_setup.gd" — handle the selection and setup flow.
+33. "scripts/resource_manager.gd" — manage saved selection, validation, progress, and recovery.
+34. "scenes/main_menu.tscn" — create the main-menu scene and 3D character presentation.
+35. "scripts/main_menu.gd" — handle menu buttons and the approved next transition.
+
+5. Verification and Completion
+
+36. The initial estimate is ten project code, scene, and configuration files.
+37. Revise this count only when repository inspection proves an additional file is necessary.
+38. The logo image, actual resource packs, and download hosting are outside that ten-file count.
+39. Verify scene paths, script attachments, resource references, and startup transitions.
+40. Check first-launch selection, later-launch behavior, progress display, and missing-resource recovery.
+41. Verify that the main menu is reachable and its buttons behave as documented.
+42. Record any unverified behavior honestly; do not present a planned feature as tested.
+43. Do not request APK installation at this stage.
+44. APK testing remains deferred until the agreed playable prototype is ready.
+45. After this scope is completed and verified, stop and ask the user to choose the next development scope.
+
+6. Temporary Document Lifecycle
+
+46. Consult this checklist before every implementation step.
+47. Update it when a requirement is completed, changed, or found unnecessary.
+48. Before starting another scope, inspect the repository and existing design documents again.
+49. Add the next approved file list to this document instead of guessing future files in advance.
+50. Keep this document temporary and remove or archive it only after the user approves doing so.
