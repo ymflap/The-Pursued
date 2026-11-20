@@ -1,0 +1,70 @@
+[gd_scene load_steps=7 format=3]
+
+[sub_resource type="Environment" id="Environment_world"]
+background_mode = 1
+background_color = Color(0.055, 0.075, 0.09, 1)
+ambient_light_source = 3
+ambient_light_color = Color(0.55, 0.62, 0.7, 1)
+ambient_light_energy = 0.7
+
+[sub_resource type="PlaneMesh" id="Plane_ground"]
+size = Vector2(40, 40)
+
+[sub_resource type="StandardMaterial3D" id="Material_ground"]
+albedo_color = Color(0.16, 0.19, 0.15, 1)
+roughness = 1.0
+
+[sub_resource type="CapsuleMesh" id="Player_body"]
+radius = 0.32
+height = 1.45
+
+[sub_resource type="SphereMesh" id="Player_head"]
+radius = 0.22
+height = 0.44
+
+[sub_resource type="CapsuleMesh" id="Monster_body"]
+radius = 0.48
+height = 2.0
+
+[node name="Main" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_world")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+rotation_degrees = Vector3(-48, -25, 0)
+light_energy = 1.1
+shadow_enabled = true
+
+[node name="Ground" type="StaticBody3D" parent="."]
+position = Vector3(0, -0.1, 0)
+
+[node name="GroundMesh" type="MeshInstance3D" parent="Ground"]
+mesh = SubResource("Plane_ground")
+surface_material_override/0 = SubResource("Material_ground")
+
+[node name="GroundCollision" type="CollisionShape3D" parent="Ground"]
+shape = SubResource("Plane_ground")
+
+[node name="Player" type="Node3D" parent="."]
+position = Vector3(-2, 0, 0)
+
+[node name="Body" type="MeshInstance3D" parent="Player"]
+position = Vector3(0, 1.0, 0)
+mesh = SubResource("Player_body")
+
+[node name="Head" type="MeshInstance3D" parent="Player"]
+position = Vector3(0, 1.88, 0)
+mesh = SubResource("Player_head")
+
+[node name="Monster" type="Node3D" parent="."]
+position = Vector3(2, 0, -3)
+
+[node name="Body" type="MeshInstance3D" parent="Monster"]
+position = Vector3(0, 1.0, 0)
+mesh = SubResource("Monster_body")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+position = Vector3(0, 5.5, 10)
+rotation_degrees = Vector3(-24, 0, 0)
+current = true
